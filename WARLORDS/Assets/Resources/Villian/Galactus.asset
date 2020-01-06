@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68948cd259a998944be3bfe4470daa1d, type: 3}
+  m_Name: Galactus
+  m_EditorClassIdentifier: 
+  cardSprite: {fileID: 21300000, guid: 20bebde43a7d3a34799485971d9e54c0, type: 3}
+  rarity: {fileID: 21300000, guid: 194b1e573aee2a944b44c7e760b4e3c1, type: 3}
+  cardName: Galactus
+  cardText: '"I will make you my Herald"'
+  cardAttack: 900
+  cardDefense: 1000
