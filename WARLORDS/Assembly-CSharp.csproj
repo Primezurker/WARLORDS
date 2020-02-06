@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0EEBF18E-272D-828E-0FE3-FE5D1E52DE1C}</ProjectGuid>
+    <ProjectGuid>{8485E978-E09F-70BE-ACE2-D3E21BA45960}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,37 +63,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CardDisplay.cs" />
-    <Compile Include="Assets\Cards.cs" />
-    <Compile Include="Assets\Deck.cs" />
-    <Compile Include="Assets\Hand.cs" />
-    <Compile Include="Assets\Timer.cs" />
+    <Compile Include="Assets\Scripts\CardDisplay.cs" />
+    <Compile Include="Assets\Scripts\Cards.cs" />
+    <Compile Include="Assets\Scripts\CardStats.cs" />
+    <Compile Include="Assets\Scripts\Draggable.cs" />
+    <Compile Include="Assets\Scripts\DropZone.cs" />
+    <Compile Include="Assets\Scripts\MenuScript.cs" />
+    <Compile Include="Assets\Scripts\NPCMove.cs" />
+    <Compile Include="Assets\Scripts\PlayerMove.cs" />
+    <Compile Include="Assets\Scripts\RaiseHand.cs" />
+    <Compile Include="Assets\Scripts\SpawnCard.cs" />
+    <Compile Include="Assets\Scripts\TacticsCamera.cs" />
+    <Compile Include="Assets\Scripts\TacticsMove.cs" />
+    <Compile Include="Assets\Scripts\Tile.cs" />
+    <Compile Include="Assets\Scripts\Timer.cs" />
+    <Compile Include="Assets\Scripts\TurnManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/xxsha/Desktop/UnityProjects/CardGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/xxsha/Desktop/WARLORDS/WARLORDS/WARLORDS/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity2019.2.11/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
