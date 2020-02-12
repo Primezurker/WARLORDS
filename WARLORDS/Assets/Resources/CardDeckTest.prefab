@@ -815,7 +815,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6772429767027394103}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03fad8e37f7948143846dd0c1ed06732, type: 3}
   m_Name: 
@@ -868,7 +868,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adfd70c67b11d64b93ba005d26c80c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisCard: []
+  thisCard:
+  - id: 0
+    cardName: 
+    actionPoints: 0
+    cardAttack: 0
+    cardHealth: 0
+    cardDescription: 
+    cardImage: {fileID: 0}
+    cardColor: 
+    typeOfFaction: 0
+    cardType: 0
   cardID: 0
   id: 0
   cardName: 
@@ -877,19 +887,19 @@ MonoBehaviour:
   cardHealth: 0
   cardDescription: 
   cardFaction: 0
+  cardType: 
   cardNameText: {fileID: 1145009406561420824}
   actionPointsText: {fileID: 838022734057442412}
   cardAttackText: {fileID: 9172138618162451289}
   cardHealthText: {fileID: 7346253890911393566}
   cardDescriptionText: {fileID: 8203435161596941622}
   cardFactionText: {fileID: 6420417425141224130}
+  cardTypeText: {fileID: 2238575144076382459}
   cardSprite: {fileID: 0}
-  cardImage: {fileID: 0}
-  cardFrame: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardImage: {fileID: 7576234024922209478}
+  cardFrame: {fileID: 5321299992138892649}
+  cardBack: {fileID: 3485021060842643803}
   isCardBack: 0
-  hand: {fileID: 0}
-  numberOfCardsInDeck: 0
 --- !u!1 &8469811356864588436
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class ThisCard : MonoBehaviour
     public int cardHealth;
     public string cardDescription;
     public string cardFaction;
+    public string cardType;
 
     public Text cardNameText;
     public Text actionPointsText;
@@ -23,6 +24,7 @@ public class ThisCard : MonoBehaviour
     public Text cardHealthText;
     public Text cardDescriptionText;
     public Text cardFactionText;
+    public Text cardTypeText;
 
     public Sprite cardSprite;
     public Image cardImage;
@@ -33,6 +35,11 @@ public class ThisCard : MonoBehaviour
     public bool isCardBack = false;
 
     void Start()
+    {
+        UpdateCard();
+    }
+
+    public void UpdateCard()
     {
         thisCard[0] = CardDatabase.cardList[cardID];
     }
@@ -46,7 +53,7 @@ public class ThisCard : MonoBehaviour
         cardHealth = thisCard[0].cardHealth;
         cardDescription = thisCard[0].cardDescription;
         cardFaction = thisCard[0].typeOfFaction.ToString();
-
+        cardType = thisCard[0].cardType.ToString();
         cardSprite = thisCard[0].cardImage;
         
         //ToDisplay Card Info
@@ -56,8 +63,9 @@ public class ThisCard : MonoBehaviour
         cardHealthText.text = "" + cardHealth;
         cardDescriptionText.text = "" + cardDescription;
         cardFactionText.text = "" + cardFaction;
-
+        cardTypeText.text = "" + cardType;
         cardImage.sprite = cardSprite;
+
         if(thisCard[0].cardColor == "Red")
         {
             cardFrame.color = Color.red;

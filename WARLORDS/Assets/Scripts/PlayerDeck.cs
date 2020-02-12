@@ -17,12 +17,12 @@ public class PlayerDeck : MonoBehaviour
     public GameObject cardInDeck3;
     public GameObject cardInDeck4;
 
-    public GameObject cardToHand;
     public GameObject cardBackObj;
-    public GameObject deckObj;
-
+    public GameObject cardToDraw;
+    public GameObject drawToHand;
     public GameObject [] cardClones;
-    public GameObject hand;
+
+    public Hand hand;
 
     void Awake()
     {
@@ -34,9 +34,19 @@ public class PlayerDeck : MonoBehaviour
     {
         for (int i = 0; i < deckSize; i++)
         {
-            x = Random.Range(0, CardDatabase.cardList.Count);
-            deck[i] = CardDatabase.cardList[x];
+            if(deckType == DeckType.CHINESE)
+            {
+                x = Random.Range(0, 16);
+                deck[i] = CardDatabase.cardList[x];
+                Debug.LogError(deck[i].typeOfFaction);
+            }
+            else
+            {
+                x = Random.Range(0, CardDatabase.cardList.Count);
+                deck[i] = CardDatabase.cardList[x];
+            }
         }
+        hand = drawToHand.GetComponent<Hand>();
     }
 
     void Update()
@@ -46,18 +56,19 @@ public class PlayerDeck : MonoBehaviour
         {
             cardInDeck1.SetActive(false);
         }
-        else if (deckSize < 30) //50% of Decksize
+        if (deckSize < 30) //50% of Decksize
         {
             cardInDeck2.SetActive(false);
         }
-        else if (deckSize < 15) //25% of Decksize
+        if (deckSize < 15) //25% of Decksize
         {
             cardInDeck3.SetActive(false);
         }
-        else if (deckSize <= 0) //No cards left
+        if (deckSize <= 0) //No cards left
         {
             cardInDeck4.SetActive(false);
         }
+        deckSize = deck.Count;
     }
 
     IEnumerator DeckShuffle()
@@ -83,5 +94,28 @@ public class PlayerDeck : MonoBehaviour
         GameObject clone = Instantiate(cardBackObj, transform.position, transform.rotation);
         clone.tag = "Clone";
         StartCoroutine(DeckShuffle());
+    }
+
+    public void DrawCard()
+    {
+        if(hand.handSize < hand.maxHandSize)
+        {
+            GameObject drawnCard = Instantiate(cardToDraw, hand.transform.position, hand.transform.rotation);
+            ThisCard _drawnCard = drawnCard.GetComponent<ThisCard>();
+
+            _drawnCard.cardID = deck[deck.Count - 1].id;
+            _drawnCard.UpdateCard();
+            drawnCard.transform.SetParent(hand.transform);
+            deck.RemoveAt(deck.Count - 1);
+
+            if (deck.Count == 0)
+            {
+                Debug.LogError("Out of Cards");
+            }
+        }
+        else
+        {
+            Debug.LogError("Hand is Full");
+        }
     }
 }

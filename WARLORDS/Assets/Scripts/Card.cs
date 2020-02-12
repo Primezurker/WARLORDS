@@ -14,12 +14,11 @@ public class Card
     public Sprite cardImage;
     public string cardColor;
     public enum CardFaction { CHINESE, ROMANS }
-    //public enum CardType { MELEE, RANGED }
+    public enum CardType { MELEE, RANGED, SIEGE, GRAND_STRATEGY, TACTICS, TRAP, AUXILIARY, TERRAIN, FORTIFICATION}
     public CardFaction typeOfFaction;
-    //public CardType cardType;
+    public CardType cardType;
 
-
-    public Card(int _id, string _cardName, int _actionPoints, int _cardAttack, int _cardHealth, string _cardDescription, Sprite _cardImage, string _cardColor, CardFaction _cardFaction/*, CardType _cardType*/)
+    public Card(int _id, string _cardName, int _actionPoints, int _cardAttack, int _cardHealth, string _cardDescription, Sprite _cardImage, string _cardColor, CardFaction _cardFaction, CardType _cardType)
     {
         id = _id;
         cardName = _cardName;
@@ -30,6 +29,6 @@ public class Card
         cardImage = _cardImage;
         cardColor = _cardColor;
         typeOfFaction = _cardFaction;
-        //cardType = _cardType;
+        cardType = _cardType;
     }
 }

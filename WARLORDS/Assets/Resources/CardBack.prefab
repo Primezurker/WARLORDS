@@ -727,6 +727,7 @@ MonoBehaviour:
     cardImage: {fileID: 0}
     cardColor: 
     typeOfFaction: 0
+    cardType: 0
   cardID: 2
   id: 0
   cardName: 
@@ -735,12 +736,14 @@ MonoBehaviour:
   cardHealth: 0
   cardDescription: 
   cardFaction: 0
+  cardType: 
   cardNameText: {fileID: 1355435832240335937}
   actionPointsText: {fileID: 1625196335288575541}
   cardAttackText: {fileID: 7090180057756432640}
   cardHealthText: {fileID: 8709883294093458759}
   cardDescriptionText: {fileID: 7851162389280538479}
   cardFactionText: {fileID: 4914973011269073051}
+  cardTypeText: {fileID: 161459382568581794}
   cardSprite: {fileID: 0}
   cardImage: {fileID: 8361120708069242527}
   cardFrame: {fileID: 6121962470269267760}

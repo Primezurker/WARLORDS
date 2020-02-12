@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler/*, IPointerEnterHandler, IPointerExitHandler*/
 {
     public Transform parentToReturnTo = null;
     public Transform placeholderParent = null;
@@ -12,7 +12,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     //Animation
     public GameObject hand = null;
-    Animator handAnim = null;
+    //Animator handAnim = null;
 
     void Awake()
     {
@@ -24,21 +24,23 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     void Start()
     {
-        handAnim = hand.GetComponent<Animator>();
+        //handAnim = hand.GetComponent<Animator>();
+        parentToReturnTo = this.transform.parent;
+        placeholderParent = parentToReturnTo;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        handAnim.SetBool("raiseHand", true);
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        handAnim.SetBool("raiseHand", false);
-    }
+    //public void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    handAnim.SetBool("raiseHand", true);
+    //}
+    //public void OnPointerExit(PointerEventData eventData)
+    //{
+    //    handAnim.SetBool("raiseHand", false);
+    //}
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        handAnim.SetBool("draggingCard", true);
+        //handAnim.SetBool("draggingCard", true);
         placeholder = new GameObject();
         placeholder.transform.SetParent(this.transform.parent);
         parentToReturnTo = this.transform.parent;
@@ -77,7 +79,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 break;
             }
         }
-        handAnim.SetBool("draggingCard", true);
+        //handAnim.SetBool("draggingCard", true);
         placeholder.transform.SetSiblingIndex(newSiblingIndex);
     }
 
@@ -87,6 +89,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         Destroy(placeholder);
-        handAnim.SetBool("draggingCard", false);
+        //handAnim.SetBool("draggingCard", false);
     }
 }
