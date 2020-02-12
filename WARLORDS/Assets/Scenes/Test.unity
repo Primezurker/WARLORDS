@@ -1601,7 +1601,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cards
       value: 
-      objectReference: {fileID: 11400000, guid: f14ec42314c05a548ab3dd225fba8857,
+      objectReference: {fileID: 11400000, guid: 867725e1f222668438554a2ebfcfe34f,
         type: 2}
     - target: {fileID: 6315120337261478814, guid: b4941b6f8b626054c93795e3b6599f71,
         type: 3}
@@ -3027,5 +3027,10 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 2485627304151710480}
+    - target: {fileID: 7065751982830431074, guid: f3b28494d76da894f82ed1cae99f51b7,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b28494d76da894f82ed1cae99f51b7, type: 3}

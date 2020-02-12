@@ -4,7 +4,7 @@
 public class CardStats : MonoBehaviour
 {
     Cards cards;
-    public int _resourceCost = 0;
+    //public int _resourceCost = 0;
     public int _actionsPoints = 0;
     public int _cardAttack = 0;
     public int _cardHealth = 0;
@@ -14,7 +14,7 @@ public class CardStats : MonoBehaviour
     {
         cards = GetComponent<CardDisplay>().cards;
 
-        _resourceCost = cards.resourceCost;
+        //_resourceCost = cards.resourceCost;
         _actionsPoints = cards.actionPoints;
         _cardAttack = cards.cardAttack;
         _cardHealth = cards.cardHealth;

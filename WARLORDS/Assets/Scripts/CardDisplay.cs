@@ -7,7 +7,7 @@ public class CardDisplay : MonoBehaviour
     public Cards cards;
     public Text cardType = null;
     public Text cardName = null;
-    public Text resourceCost = null;
+    //public Text resourceCost = null;
     public Image cardImage = null;
     public Image cardColor;
     public Text cardFaction = null;
@@ -20,7 +20,7 @@ public class CardDisplay : MonoBehaviour
     {
         cardType.text = cards.typeOfCard.ToString();
         cardName.text = cards.cardName;
-        resourceCost.text = cards.resourceCost.ToString();
+        //resourceCost.text = cards.resourceCost.ToString();
         cardImage.sprite = cards.cardSprite;
         cardColor.color = cards.cardColor;
         cardFaction.text = cards.typeOfFaction.ToString();
