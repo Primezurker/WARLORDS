@@ -1,18 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public bool draggingCard = false;
-    public int handSize = 0;
-    public int maxHandSize = 10;
-
-    void Update()
-    {
-        handSize = transform.childCount;
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -43,9 +34,11 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public virtual void OnDrop(PointerEventData eventData)
     {
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-        if(d != null && handSize <= maxHandSize)
+        if(d != null)
         {
             d.parentToReturnTo = this.transform;
+            GetComponent<SpawnCard>().thisCard = d.GetComponent<ThisCard>();
+            GetComponent<SpawnCard>().Spawn();
         }
     }
 }

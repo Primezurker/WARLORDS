@@ -13,8 +13,8 @@ public class Card
     public string cardDescription;
     public Sprite cardImage;
     public string cardColor;
-    public enum CardFaction { CHINESE, ROMANS }
-    public enum CardType { MELEE, RANGED, SIEGE, GRAND_STRATEGY, TACTICS, TRAP, AUXILIARY, TERRAIN, FORTIFICATION}
+    public enum CardFaction { CHINESE, ROMANS, GREEK, INDIANS, NORSE, UNIVERSAL}
+    public enum CardType { MELEE, RANGED, SIEGE, GRAND_STRATEGY, TACTIC, TRAP, AUXILIARY, TERRAIN, FORTIFICATION}
     public CardFaction typeOfFaction;
     public CardType cardType;
 

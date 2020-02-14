@@ -40,12 +40,14 @@ public class PlayerDeck : MonoBehaviour
                 deck[i] = CardDatabase.cardList[x];
                 Debug.LogError(deck[i].typeOfFaction);
             }
-            else
+            else if(deckType == DeckType.ROMANS)
             {
-                x = Random.Range(0, CardDatabase.cardList.Count);
+                x = Random.Range(16, 35);
                 deck[i] = CardDatabase.cardList[x];
+                Debug.LogError(deck[i].typeOfFaction);
             }
         }
+        drawToHand = GameObject.FindGameObjectWithTag("Hand");
         hand = drawToHand.GetComponent<Hand>();
     }
 

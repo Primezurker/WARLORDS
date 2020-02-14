@@ -10,6 +10,5 @@ public class Hand : MonoBehaviour
     public void Update()
     {
         handSize = transform.childCount;
-        Debug.LogError(handSize);
     }
 }

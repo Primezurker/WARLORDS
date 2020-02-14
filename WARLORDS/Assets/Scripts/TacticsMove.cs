@@ -37,6 +37,8 @@ public class TacticsMove : MonoBehaviour
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
         TurnManager.AddUnit(this);
+
+        move = GetComponent<Stats>().actionPoints;
     }
 
     public void GetCurrentTile()
