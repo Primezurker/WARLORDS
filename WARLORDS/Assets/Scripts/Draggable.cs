@@ -7,8 +7,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Transform parentToReturnTo = null;
     public Transform placeholderParent = null;
     GameObject placeholder = null;
+    CanvasGroup canvasGroup;
     public enum Slot { UNIT, STRATEGY, FIELD};
     public Slot typeOfItem = Slot.UNIT;
+    public bool dropped = false;
 
     //Animation
     public GameObject hand = null;
@@ -25,6 +27,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     void Start()
     {
         //handAnim = hand.GetComponent<Animator>();
+        canvasGroup = GetComponent<CanvasGroup>();
         parentToReturnTo = this.transform.parent;
         placeholderParent = parentToReturnTo;
     }
@@ -55,7 +58,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         placeholderParent = parentToReturnTo;
         this.transform.SetParent(this.transform.parent.parent); //Hard-coding here. Optimize later
 
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -87,7 +90,14 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         this.transform.SetParent(parentToReturnTo);
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
+        if(dropped == false || this.transform.parent.tag == "Hand")
+        {
+            canvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            canvasGroup.blocksRaycasts = false;
+        }
         Destroy(placeholder);
         //handAnim.SetBool("draggingCard", false);
     }

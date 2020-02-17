@@ -12,6 +12,9 @@ public class PlayerDeck : MonoBehaviour
     public int x;
     public int deckSize;
 
+    public ChineseDeck chineseDeck;
+    public RomanDeck romanDeck;
+
     public GameObject cardInDeck1;
     public GameObject cardInDeck2;
     public GameObject cardInDeck3;
@@ -34,16 +37,26 @@ public class PlayerDeck : MonoBehaviour
     {
         for (int i = 0; i < deckSize; i++)
         {
+            //if(deckType == DeckType.CHINESE)
+            //{
+            //    x = Random.Range(0, 16);
+            //    deck[i] = CardDatabase.cardList[x];
+            //    Debug.LogError(deck[i].typeOfFaction);
+            //}
+            //else if(deckType == DeckType.ROMANS)
+            //{
+            //    x = Random.Range(16, 35);
+            //    deck[i] = CardDatabase.cardList[x];
+            //    Debug.LogError(deck[i].typeOfFaction);
+            //}
             if(deckType == DeckType.CHINESE)
             {
-                x = Random.Range(0, 16);
-                deck[i] = CardDatabase.cardList[x];
-                Debug.LogError(deck[i].typeOfFaction);
+                deck[i] = chineseDeck.chineseDeck[i];
+                Debug.LogError(deck[i]);
             }
-            else if(deckType == DeckType.ROMANS)
+            if(deckType == DeckType.ROMANS)
             {
-                x = Random.Range(16, 35);
-                deck[i] = CardDatabase.cardList[x];
+                deck[i] = romanDeck.romanDeck[i];
                 Debug.LogError(deck[i].typeOfFaction);
             }
         }
@@ -81,6 +94,17 @@ public class PlayerDeck : MonoBehaviour
         foreach(GameObject clone in cardClones)
         {
             Destroy(clone);
+        }
+    }
+
+    public void StartingShuffle()
+    {
+        for (int i = 0; i < deckSize; i++)
+        {
+            container[0] = deck[i];
+            int randomIndex = Random.Range(i, deckSize);
+            deck[i] = deck[randomIndex];
+            deck[randomIndex] = container[0];
         }
     }
 
