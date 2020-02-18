@@ -1,10 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public bool draggingCard = false;
+    public Text zoneTypeText;
     public GraveyardPile graveyard;
+    public Card.CardRole zoneType;
+
+    void Start()
+    {
+        if(tag != "Hand")
+        {
+            zoneTypeText.text = zoneType.ToString();
+        }
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(eventData.pointerDrag == null)
@@ -34,13 +46,12 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public virtual void OnDrop(PointerEventData eventData)
     {
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-        if(d != null)
+        if(d != null && d.cardRole == zoneType)
         {
             d.parentToReturnTo = this.transform;
             GetComponent<SpawnCard>().thisCard = d.GetComponent<ThisCard>();
             GetComponent<SpawnCard>().Spawn();
             graveyard.graveyard.Add(d.gameObject);
-            //graveyard.graveyard.Add(d.GetComponent<ThisCard>());
             d.parentToReturnTo = graveyard.transform;
             d.GetComponent<Draggable>().dropped = true;
         }

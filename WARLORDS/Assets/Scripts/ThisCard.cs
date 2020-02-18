@@ -17,6 +17,7 @@ public class ThisCard : MonoBehaviour
     public string cardDescription;
     public string cardFaction;
     public string cardType;
+    public string cardRole;
 
     public Text cardNameText;
     public Text actionPointsText;
@@ -37,6 +38,7 @@ public class ThisCard : MonoBehaviour
     void Start()
     {
         UpdateCard();
+        GetComponent<Draggable>().cardRole = thisCard[0].cardRole;
     }
 
     public void UpdateCard()
@@ -54,6 +56,7 @@ public class ThisCard : MonoBehaviour
         cardDescription = thisCard[0].cardDescription;
         cardFaction = thisCard[0].typeOfFaction.ToString();
         cardType = thisCard[0].cardType.ToString();
+        cardRole = thisCard[0].cardRole.ToString();
         cardSprite = thisCard[0].cardImage;
         
         //ToDisplay Card Info

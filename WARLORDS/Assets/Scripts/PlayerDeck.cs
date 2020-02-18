@@ -35,6 +35,12 @@ public class PlayerDeck : MonoBehaviour
 
     void Start()
     {
+        drawToHand = GameObject.FindGameObjectWithTag("Hand");
+        hand = drawToHand.GetComponent<Hand>();
+    }
+
+    public void PopulateDeck()
+    {
         for (int i = 0; i < deckSize; i++)
         {
             //if(deckType == DeckType.CHINESE)
@@ -49,19 +55,17 @@ public class PlayerDeck : MonoBehaviour
             //    deck[i] = CardDatabase.cardList[x];
             //    Debug.LogError(deck[i].typeOfFaction);
             //}
-            if(deckType == DeckType.CHINESE)
+            if (deckType == DeckType.CHINESE)
             {
                 deck[i] = chineseDeck.chineseDeck[i];
-                Debug.LogError(deck[i]);
+                Debug.LogError(deck[i].typeOfFaction);
             }
-            if(deckType == DeckType.ROMANS)
+            if (deckType == DeckType.ROMANS)
             {
                 deck[i] = romanDeck.romanDeck[i];
                 Debug.LogError(deck[i].typeOfFaction);
             }
         }
-        drawToHand = GameObject.FindGameObjectWithTag("Hand");
-        hand = drawToHand.GetComponent<Hand>();
     }
 
     void Update()

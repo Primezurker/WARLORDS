@@ -8,8 +8,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Transform placeholderParent = null;
     GameObject placeholder = null;
     CanvasGroup canvasGroup;
-    public enum Slot { UNIT, STRATEGY, FIELD};
-    public Slot typeOfItem = Slot.UNIT;
+    public Card.CardRole cardRole;
     public bool dropped = false;
 
     //Animation

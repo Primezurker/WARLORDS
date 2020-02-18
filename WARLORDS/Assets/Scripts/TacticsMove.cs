@@ -5,6 +5,7 @@ using UnityEngine;
 public class TacticsMove : MonoBehaviour 
 {
     public bool turn = false;
+    public Stats stats;
 
     List<Tile> selectableTiles = new List<Tile>();
     GameObject[] tiles;
@@ -32,11 +33,12 @@ public class TacticsMove : MonoBehaviour
 
     protected void Init()
     {
+        stats = GetComponent<Stats>();
         tiles = GameObject.FindGameObjectsWithTag("Tile");
 
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
-        TurnManager.AddUnit(this);
+        //TurnManager.AddUnit(this);
 
         move = GetComponent<Stats>().actionPoints;
     }
@@ -110,13 +112,14 @@ public class TacticsMove : MonoBehaviour
         path.Clear();
         tile.target = true;
         moving = true;
-
         Tile next = tile;
         while (next != null)
         {
+            Debug.LogError("Called");
             path.Push(next);
             next = next.parent;
         }
+        stats.actionPoints--;
     }
 
     public void Move()
@@ -125,7 +128,6 @@ public class TacticsMove : MonoBehaviour
         {
             Tile t = path.Peek();
             Vector3 target = t.transform.position;
-
             //Calculate the unit's position on top of the target tile
             target.y += halfHeight + t.GetComponent<Collider>().bounds.extents.y;
 

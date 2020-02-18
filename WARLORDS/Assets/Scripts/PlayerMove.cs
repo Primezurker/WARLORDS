@@ -2,16 +2,19 @@
 
 public class PlayerMove : TacticsMove 
 {
+    public bool active;
+
 	void Start () 
 	{
         Init();
+        move = stats.actionPoints;
 	}
 
 	void Update () 
 	{
         Debug.DrawRay(transform.position, transform.forward);
 
-        if (!turn)
+        if (!active)
         {
             return;
         }
@@ -47,5 +50,10 @@ public class PlayerMove : TacticsMove
                 }
             }
         }
+    }
+
+    void OnMouseOver()
+    {
+        active = true;
     }
 }
