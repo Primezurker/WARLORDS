@@ -11,6 +11,8 @@ TagManager:
   - EnemyTile
   - BattlefieldTile
   - Clone
+  - TurnText
+  - TurnIndicator
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - PlayerTile
   - EnemyTile
   - BattlefieldTile
-  - 
+  - Enemy
   - 
   - 
   - 
