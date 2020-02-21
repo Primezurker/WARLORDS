@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class GraveyardPile : MonoBehaviour
 {
+    public static GraveyardPile graveyardPile;
     public List<GameObject> graveyard = new List<GameObject>();
     public GameObject hand;
+
+    private void Awake()
+    {
+        graveyardPile = this;
+    }
 
     private void Start()
     {

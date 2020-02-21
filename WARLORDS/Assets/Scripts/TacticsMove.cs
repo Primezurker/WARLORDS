@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TacticsMove : MonoBehaviour 
 {
-    public bool turn = false;
+    public bool active;
+    public bool selected;
     public Stats stats;
 
     List<Tile> selectableTiles = new List<Tile>();
@@ -82,7 +83,6 @@ public class TacticsMove : MonoBehaviour
 
         process.Enqueue(currentTile);
         currentTile.visited = true;
-        //currentTile.parent = ??  leave as null 
 
         while (process.Count > 0)
         {
@@ -115,7 +115,6 @@ public class TacticsMove : MonoBehaviour
         Tile next = tile;
         while (next != null)
         {
-            Debug.LogError("Called");
             path.Push(next);
             next = next.parent;
         }
@@ -160,8 +159,6 @@ public class TacticsMove : MonoBehaviour
         {
             RemoveSelectableTiles();
             moving = false;
-
-            TurnManager.EndTurn();
         }
     }
 
@@ -191,6 +188,8 @@ public class TacticsMove : MonoBehaviour
     {
         velocity = heading * moveSpeed;
     }
+
+    #region JumpingFunctions
 
     void Jump(Vector3 target)
     {
@@ -285,6 +284,8 @@ public class TacticsMove : MonoBehaviour
             velocity.y = 1.5f;
         }
     }
+
+    #endregion
 
     protected Tile FindLowestF(List<Tile> list)
     {
@@ -384,18 +385,5 @@ public class TacticsMove : MonoBehaviour
                 }
             }
         }
-
-        //todo - what do you do if there is no path to the target tile?
-        Debug.Log("Path not found");
-    }
-
-    public void BeginTurn()
-    {
-        turn = true;
-    }
-
-    public void EndTurn()
-    {
-        turn = false;
     }
 }

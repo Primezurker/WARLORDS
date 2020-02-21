@@ -3,13 +3,17 @@ using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
+    #region Variables
     public PlayerDeck playerDeck;
     public GameManager gameManager;
 
+    public GameObject playerHand;
+    public GameObject turnTextObj;
+    public Draggable[] cardsInHand;
+
     public bool isYourTurn;
     public int turnCount = 0;
-    public Text turnCountText;
-    public Text whoseTurnText;
+    public TextMesh turnCountText;
     public Text turnTimerText;
 
     public Text dp_Text;
@@ -21,12 +25,15 @@ public class TurnSystem : MonoBehaviour
     public int phase = 0; //0 is Game Start Phase; 1 is Draw Phase 2 is Action Phase One; 3 is Battle Phase; 4 is Action Phase Two; 5 is End Phase;
 
     public bool gameStarted;
-    bool cardDrawn;
+    public bool cardDrawn;
+    public bool canPlayCards; //Deteremines whether or not you can play cards in a phase
 
     public bool beginCountDown = false;
     public float startTime = 30;
     public float currTime = 0;
 
+    Renderer turnTextRend;
+    #endregion
     void Awake()
     {
         phase = 0;
@@ -37,22 +44,29 @@ public class TurnSystem : MonoBehaviour
 
     void Start()
     {
+        if(turnTextObj == null)
+        {
+            turnTextObj = GameObject.FindGameObjectWithTag("TurnIndicator");
+            turnTextRend = turnTextObj.GetComponent<Renderer>();
+            SetTurnColor();
+        }
+        else
+        {
+            turnTextRend = turnTextObj.GetComponent<Renderer>();
+            SetTurnColor();
+        }
+        if (turnCountText == null)
+        {
+            turnCountText = GameObject.FindGameObjectWithTag("TurnText").GetComponent<TextMesh>();
+        }
         Phases();
     }
 
     void Update()
     {
-        if(isYourTurn == true)
-        {
-            whoseTurnText.text = "Your Turn";
-        }
-        else
-        {
-            whoseTurnText.text = "Opponent Turn";
-        }
         turnTimerText.text = currTime.ToString("F2");
         turnCountText.text = turnCount.ToString();
-        if (beginCountDown)
+        if (beginCountDown == true)
         {
             currTime -= 1 * Time.deltaTime;
             if(currTime <= 0)
@@ -69,20 +83,19 @@ public class TurnSystem : MonoBehaviour
         currTime = startTime;
     }
 
+    #region EndingTurns
     public void EndYourTurn()
     {
         isYourTurn = false;
         turnCount++;
         Debug.LogError("Ending Your Turn");
     }
-
     public void EndYourOpponentTurn()
     {
         isYourTurn = true;
         turnCount++;
         Debug.LogError("Ending Opponents Turn");
     }
-
     public void EndTurn()
     {
         if(isYourTurn == true)
@@ -97,47 +110,41 @@ public class TurnSystem : MonoBehaviour
             EndYourOpponentTurn();
             ResetTimer();
             phase = 1;
+            Phases();
         }
         beginCountDown = true;
         cardDrawn = false;
+        SetTurnColor();
     }
+
+    #endregion
 
     public void Phases()
     {
         switch (phase)
         {
             default:
-                Debug.Log("Game Started Phase");
                 GameStartPhase();
                 break;
 
             case 1:
-                Debug.LogError("Draw Phase");
                 DrawPhase();
                 break;
 
             case 2:
-                Debug.LogError("Action Phase One");
                 ActionPhaseOne();
-
                 break;
 
             case 3:
-                Debug.LogError("Battle Phase");
                 BattlePhase();
-
                 break;
 
             case 4:
-                Debug.LogError("Action Phase Two");
                 ActionPhaseTwo();
-
                 break;
 
-            case 5: 
-                Debug.LogError("End Phase");
+            case 5:
                 EndPhase();
-
                 break;
             case 6:
                 SwitchSides();
@@ -149,6 +156,7 @@ public class TurnSystem : MonoBehaviour
 
     public void GameStartPhase()
     {
+        CardsInHand();
         //Draw 6 Cards
         if(gameStarted == false)
         {
@@ -156,24 +164,31 @@ public class TurnSystem : MonoBehaviour
         }
         else
         {
-            phase = 1;
-            Phases();
+            phase = 0;
+            Invoke("NextPhase", 1);
         }
+        canPlayCards = false;
         //Can replace 2 cards -OR- replace entire hand
     }
 
     public void DrawPhase()
     {
+        DisablePhaseColor();
+        dp_Text.color = Color.green;
+        beginCountDown = true;
         //Draw One Card
-        if(cardDrawn == false)
+        if (cardDrawn == false)
         {
             playerDeck.DrawCard();
             ResetTimer();
-            beginCountDown = true;
             cardDrawn = true;
         }
-        DisplayTurn();
-        dp_Text.color = Color.green;
+        if(cardDrawn == true)
+        {
+            NextPhase();
+            Phases();
+        }
+
     }
 
     public void ActionPhaseOne()
@@ -181,52 +196,95 @@ public class TurnSystem : MonoBehaviour
         //Play or move Unit cards
         //Play Strategy Card
         //Play Field Card
+        beginCountDown = true;
+
+        beginCountDown = true;
+
+        beginCountDown = true;
+
         cardDrawn = false;
-        DisplayTurn();
+        canPlayCards = true;
+        CardsInHand();
+        DisablePhaseColor();
         ap_One_Text.color = Color.green;
     }
 
     public void BattlePhase()
     {
+        canPlayCards = false;
+        CardsInHand();
         //Can attack
-        DisplayTurn();
+        DisablePhaseColor();
         bp_Text.color = Color.green;
     }
 
     public void ActionPhaseTwo()
     {
         //Can play cards again
-        DisplayTurn();
+        cardDrawn = false;
+        canPlayCards = true;
+        CardsInHand();
+        DisablePhaseColor();
         ap_Two_Text.color = Color.green;
     }
 
     public void EndPhase()
     {
         //End Turn
-        DisplayTurn();
+        DisablePhaseColor();
         ep_Text.color = Color.green;
+        Invoke("NextPhase", 1);
     }
 
     public void SwitchSides()
     {
         //Other Players Turn
+        beginCountDown = false;
         EndTurn();
+        ResetTimer();
     }
 
+    #endregion
     public void NextPhase()
     {
         phase++;
         Phases();
     }
 
-    #endregion
-
-    void DisplayTurn()
+    void DisablePhaseColor()
     {
         dp_Text.color = Color.black;
         ap_One_Text.color = Color.black;
         bp_Text.color = Color.black;
         ap_Two_Text.color = Color.black;
         ep_Text.color = Color.black;
+    }
+
+    void CardsInHand()
+    {
+        cardsInHand = playerHand.transform.GetComponentsInChildren<Draggable>();
+        foreach(Draggable d in cardsInHand)
+        {
+            if(canPlayCards == false)
+            {
+                d.enabled = false;
+            }
+            else
+            {
+                d.enabled = true;
+            }
+        }
+    }
+
+    void SetTurnColor()
+    {
+        if (isYourTurn == true)
+        {
+            turnTextRend.material = Resources.Load<Material>("PlayerTileMat");
+        }
+        else
+        {
+            turnTextRend.material = Resources.Load<Material>("EnemyTileMat");
+        }
     }
 }

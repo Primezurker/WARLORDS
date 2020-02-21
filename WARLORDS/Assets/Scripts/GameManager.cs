@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
             playerDeck.DrawCard();
             if (i >= 5)
             {
+                yield return new WaitForSeconds(1);
                 turnSystem.beginCountDown = true;
                 turnSystem.NextPhase();
                 turnSystem.gameStarted = true;

@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerMove : TacticsMove 
 {
-    public bool active;
+    int attackRange = 0;
+    Renderer rend;
 
 	void Start () 
 	{
         Init();
         move = stats.actionPoints;
+        attackRange = stats.attackRange;
+        rend = GetComponent<Renderer>();
 	}
 
 	void Update () 
@@ -54,6 +58,42 @@ public class PlayerMove : TacticsMove
 
     void OnMouseOver()
     {
-        active = true;
+        if(selected == false)
+        {
+            rend.material.color = Color.yellow;
+        }
+        else
+        {
+            rend.material.color = Color.green;
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            PlayerMove[] playerMove = FindObjectsOfType<PlayerMove>();
+            foreach(PlayerMove pm in playerMove)
+            {
+                pm.selected = false;
+                pm.active = false;
+                pm.GetComponent<Renderer>().material.color = Color.blue;
+            }
+            selected = true;
+            active = true;
+
+        }
+    }
+    void OnMouseExit()
+    {
+        if(selected == false)
+        {
+            rend.material.color = Color.blue;
+        }
+        else
+        {
+            rend.material.color = Color.green;
+        }
+    }
+
+    void FindEnemiesInRange()
+    {
+
     }
 }

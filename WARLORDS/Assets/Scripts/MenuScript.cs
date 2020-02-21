@@ -63,4 +63,15 @@ public class MenuScript
             t.AddComponent<Tile>();
         }
     }
+
+    [MenuItem("Tools/AssignCollider")]
+    public static void AssignCollider()
+    {
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+
+        foreach (GameObject t in tiles)
+        {
+            t.AddComponent<BoxCollider>();
+        }
+    }
 }
