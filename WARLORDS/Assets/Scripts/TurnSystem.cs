@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class TurnSystem : MonoBehaviour
 {
     #region Variables
+    public static TurnSystem turnSystem;
     public PlayerDeck playerDeck;
     public GameManager gameManager;
 
@@ -36,6 +37,7 @@ public class TurnSystem : MonoBehaviour
     #endregion
     void Awake()
     {
+        turnSystem = this;
         phase = 0;
         isYourTurn = true;
         turnCount = 0;
@@ -64,7 +66,7 @@ public class TurnSystem : MonoBehaviour
 
     void Update()
     {
-        turnTimerText.text = currTime.ToString("F2");
+        turnTimerText.text = currTime.ToString("F0");
         turnCountText.text = turnCount.ToString();
         if (beginCountDown == true)
         {

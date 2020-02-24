@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMove : TacticsMove 
 {
@@ -12,25 +11,35 @@ public class PlayerMove : TacticsMove
         move = stats.actionPoints;
         attackRange = stats.attackRange;
         rend = GetComponent<Renderer>();
-	}
+    }
 
-	void Update () 
+	void Update ()
 	{
         Debug.DrawRay(transform.position, transform.forward);
-
-        if (!active)
+        if (canMove == true)
         {
-            return;
-        }
+            if (!active)
+            {
+                return;
+            }
 
-        if (!moving)
-        {
-            FindSelectableTiles();
-            CheckMouse();
+            if (!moving)
+            {
+                FindSelectableTiles();
+                CheckMouse();
+                UnitManager.unitManager.unitMoving = false;
+                TurnSystem.turnSystem.beginCountDown = true;
+            }
+            else
+            {
+                TurnSystem.turnSystem.beginCountDown = false;
+                UnitManager.unitManager.unitMoving = true;
+                Move();
+            }
         }
         else
         {
-            Move();
+            return;
         }
 	}
 
@@ -58,26 +67,29 @@ public class PlayerMove : TacticsMove
 
     void OnMouseOver()
     {
-        if(selected == false)
+        if(UnitManager.unitManager.unitMoving == false)
         {
-            rend.material.color = Color.yellow;
-        }
-        else
-        {
-            rend.material.color = Color.green;
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            PlayerMove[] playerMove = FindObjectsOfType<PlayerMove>();
-            foreach(PlayerMove pm in playerMove)
+            if (selected == false)
             {
-                pm.selected = false;
-                pm.active = false;
-                pm.GetComponent<Renderer>().material.color = Color.blue;
+                rend.material.color = Color.yellow;
             }
-            selected = true;
-            active = true;
+            else
+            {
+                rend.material.color = Color.green;
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                PlayerMove[] playerMove = FindObjectsOfType<PlayerMove>();
+                foreach (PlayerMove pm in playerMove)
+                {
+                    pm.selected = false;
+                    pm.active = false;
+                    pm.GetComponent<Renderer>().material.color = Color.blue;
+                }
+                selected = true;
+                active = true;
 
+            }
         }
     }
     void OnMouseExit()

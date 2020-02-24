@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i <= 5; i++)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.5f);
             playerDeck.StartingShuffle();
             playerDeck.DrawCard();
             if (i >= 5)

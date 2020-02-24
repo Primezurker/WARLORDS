@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TacticsMove : MonoBehaviour 
 {
+    public bool canMove;
     public bool active;
     public bool selected;
     public Stats stats;
@@ -36,7 +37,7 @@ public class TacticsMove : MonoBehaviour
     {
         stats = GetComponent<Stats>();
         tiles = GameObject.FindGameObjectsWithTag("Tile");
-
+        canMove = true;
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
         //TurnManager.AddUnit(this);
